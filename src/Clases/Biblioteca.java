@@ -6,12 +6,10 @@ import java.util.ArrayList;
 public class Biblioteca {
 	private String nombre;
 	private ArrayList<MaterialBiblioteca>invetario;
-	private ArrayList<Usuario>usuario;
 	public Biblioteca(String nombre) {
 		super();
 		this.nombre = nombre;
 		this.invetario =new ArrayList<>();
-		this.usuario=new ArrayList<>();
 	}
 	public String getNombre() {
 		return nombre;
@@ -26,8 +24,20 @@ public class Biblioteca {
 		this.invetario = invetario;
 	}
 	public boolean agregarMaterial(MaterialBiblioteca material) {
-		this.invetario.add(material);
-		return true;
+		boolean isExist=materisIsExist(material);
+		if(!isExist) {
+			this.invetario.add(material);
+			return true;
+		}
+		return false;
+	}
+	private boolean materisIsExist(MaterialBiblioteca material) {
+		for(MaterialBiblioteca m:this.invetario) {
+			if(m.equals(material)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	public MaterialBiblioteca buscarLibro(String titulo, String autor) {
 		for(MaterialBiblioteca m:this.invetario) {
@@ -40,12 +50,6 @@ public class Biblioteca {
 	public MaterialBiblioteca buscarRevista(String titulo, int numeroEdicion) {
 		for(MaterialBiblioteca m:this.invetario) {
 			if(m.getTitulo().equalsIgnoreCase(titulo)&&((Revista)m).getNumeroEdicion()==numeroEdicion) return m;
-		}
-		return null;
-	}
-	private Usuario buscarUsuario(String nombreUsuario) {
-		for(Usuario u:this.usuario) {
-			if(u.getNombre().equalsIgnoreCase(nombreUsuario))return u;
 		}
 		return null;
 	}

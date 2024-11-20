@@ -92,6 +92,7 @@ public class Main {
 			JOptionPane.showMessageDialog(null,prestado?"El libro fue prestado"+material.getTitulo():"El libro ya esta prestado");
 		}
 	}
+	//El metodo devolver matrial, devuelve un entero del precio que tiene de multa
 	private static void devolverMaterial () {
 		int tipoMaterial=Integer.parseInt(JOptionPane.showInputDialog("Ingrese el material que desea prestar\n 1.Revista\n2.Libro"));
 		if(tipoMaterial==1) {
